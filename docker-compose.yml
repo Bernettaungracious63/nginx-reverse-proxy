@@ -1,0 +1,45 @@
+volumes:
+  npm_data:
+  goaccess_data:
+
+networks:
+  proxy:
+  nextcloud:
+
+services:
+  npm:
+    container_name: nginx-proxy-manager
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    networks:
+      - proxy
+    volumes:
+      - npm_data:/data
+      - /var/lib/docker/volumes/nginx-proxy-manager_npm_data/_data/letsencrypt:/etc/letsencrypt
+
+  goaccess:
+    container_name: nginx-log-stats
+    image: xavierh/goaccess-for-nginxproxymanager:latest
+    restart: always
+    ports:
+      - "7880:7880"
+    networks:
+      - proxy
+    volumes:
+      - /var/lib/docker/volumes/nginx-proxy-manager_npm_data/_data/logs:/opt/log:ro
+      - goaccess_data:/goaccess
+    environment:
+      - TZ=${TZ}
+      - LOG_TYPE=${LOG_TYPE}
+      - SKIP_ARCHIVED_LOGS=${SKIP_ARCHIVED_LOGS}
+      - DEBUG=${DEBUG}
+      - HTML_REFRESH=${HTML_REFRESH}
+      - KEEP_LAST=${KEEP_LAST}
+      - PROCESSING_THREADS=${PROCESSING_THREADS}
+      - BASIC_AUTH=${BASIC_AUTH}
+      - BASIC_AUTH_USERNAME=${BASIC_AUTH_USERNAME}
+      - BASIC_AUTH_PASSWORD_FILE=${BASIC_AUTH_PASSWORD}

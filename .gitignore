@@ -1,0 +1,53 @@
+# --- OS cruft ---
+.DS_Store
+._*
+Thumbs.db
+
+# --- Editors/IDEs (optional) ---
+.vscode/
+.idea/
+*.swp
+
+# --- Env & secrets (never commit these) ---
+.env
+.env.*
+# keep the example template in the repo
+!env.txt
+
+# Certificates / ACME
+*.key
+*.pem
+*.p12
+*.crt
+acme.json
+
+# --- If you bind-mount Let's Encrypt or Certbot state ---
+letsencrypt/
+certbot/
+certs/private/
+certs/archive/
+certs/renewal/
+
+# --- Nginx / NPM runtime files (generated at runtime) ---
+logs/
+access.log
+error.log
+client_body_temp/
+proxy_temp/
+fastcgi_temp/
+uwsgi_temp/
+scgi_temp/
+cache/
+
+# --- GoAccess outputs (adjust to your paths if different) ---
+goaccess_data/
+*.db
+report.html
+
+# --- Docker data you might map locally (adjust if you version these) ---
+data/
+tmp/
+run/
+
+# Local-only compose overrides
+docker-compose.local.yml
