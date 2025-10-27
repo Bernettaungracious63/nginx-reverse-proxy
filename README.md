@@ -21,8 +21,8 @@ See port mappings, volumes, and networks in `docker-compose.yml`.
 
 ### 1) Clone and enter the repo
 ```bash
-git clone <your-repo-url>
-cd <repo-directory>
+git clone https://github.com/iamjavadali/nginx-reverse-proxy.git
+cd nginx-reverse-proxy
 ```
 
 ### 2) Rename `env.txt` to `.env` and edit values
